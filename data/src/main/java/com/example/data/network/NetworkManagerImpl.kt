@@ -34,6 +34,7 @@ class NetworkManagerImpl : NetworkManager {
         return api.getGifs(API_KEY, LIMIT)
     }
 
+
     companion object {
         const val API_KEY = "QYwk8FxxgFCfcspE2UkMsxjeHTYOJ3cZ"
         const val LIMIT = 20

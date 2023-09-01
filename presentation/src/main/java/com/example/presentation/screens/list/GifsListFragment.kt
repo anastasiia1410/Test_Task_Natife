@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.presentation.core.BaseFragment
 import com.example.presentation.databinding.FragmentListGifsBinding
@@ -37,7 +39,18 @@ class GifsListFragment : BaseFragment<FragmentListGifsBinding>() {
                 gifsAdapter.updateItems(it)
             }
         }
-        viewModel.load()
 
+        lifecycleScope.launch {
+            viewModel.errorFlow.collect {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            }
+        }
+
+        gifsAdapter.onGifClick = {
+            val action = GifsListFragmentDirections.actionGifsListFragmentToGifFragment(it)
+            findNavController().navigate(action)
+        }
+
+        viewModel.load()
     }
 }

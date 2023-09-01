@@ -8,6 +8,6 @@ interface Api {
     @GET("trending")
     suspend fun getGifs(
         @Query("api_key") apiKey: String,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
     ): DataNetwork
 }

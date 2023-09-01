@@ -8,6 +8,4 @@ class GifsRepositoryImpl(private val networkManager: NetworkManager) : GifsRepos
     override suspend fun getGifs(): Data {
         return networkManager.getGifs().toData()
     }
-
-
 }

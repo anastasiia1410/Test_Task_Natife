@@ -10,7 +10,7 @@ import com.example.presentation.utils.loadImage
 
 class GifsAdapter : RecyclerView.Adapter<GifsAdapter.VH>() {
     private var items: MutableList<Gif> = mutableListOf()
-    var onGifClick: ((id: String) -> Unit)? = null
+    var onGifClick: ((url: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(ItemGifBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -23,7 +23,7 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.VH>() {
         with(holder.binding)
         {
             ivImage.loadImage(item.image.fixedHeightSmallUrl.url)
-            ivImage.setOnClickListener { onGifClick?.invoke(item.id) }
+            ivImage.setOnClickListener { onGifClick?.invoke(item.image.originalUrl.url) }
         }
     }
     @SuppressLint("NotifyDataSetChanged")
